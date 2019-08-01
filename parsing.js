@@ -49,13 +49,5 @@ module.exports = {
         },
 
     },
-    saveLinksToDB: (links) => {
-        return new Promise((resolve, reject) => {
-            links.map((el, index) => {
-                doc.create({ code: el })
-                    .then(ok => resolve(ok))
-                    .catch(err => reject(err));
-            })
-        })
-    }
+    
 }

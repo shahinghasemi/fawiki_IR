@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
+
 <body>
-    <form action="/result" method="POST"  style="background-size: 100%">
-        Search Here: <input type="text" name="query">
-        <button type="submit">Search</button>
+    <form action="/query", method="POST">
+        <div class="form-group" >
+            <label for="exampleInputEmail1">SearchHere</label>
+            <input type="text" class="form-control" name="query" placeholder="جستوجو کنید">
+            <small id="emailHelp" class="form-text text-muted">درخواست شما در ویکیپدیا فارسی جستوجو میشود</small>
+        </div>
+        <button type="submit" class="btn btn-primary">SEARCH</button>
     </form>
 </body>
+<script>
+
+
+</script>
+
 </html>

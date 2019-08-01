@@ -10,7 +10,7 @@ let cursor = link.find({ visited: false }).cursor()
 
 cursor.on('data', (chunk) => {
     console.log('link retrieved from DB: ', counter++, ': ', chunk);
-    crwalFunction(baseURL + chunk.url)
+    setInterval( ()=>   crwalFunction(baseURL + chunk.url),2000)
 })
 cursor.on('error', (err) => {
     console.log('error getting the chunks')

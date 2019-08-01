@@ -34,7 +34,6 @@ async function firstCrawl(url) {
                     .catch(error => console.log('error saving gathered to DB: ', error));
             }
         })
-
     }).catch(err => console.log('there is something wrong in parsing: ', err));
 
 };
