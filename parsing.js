@@ -11,22 +11,21 @@ module.exports = {
                 axios.get(url).then(res => {
                     const $ = cheerio.load(res.data);
                     let obj = {
-                        url : url,
+                        url: url,
                         links: [String],
                         contents: [String],
                         headers2: [String],
                         headers3: [String],
                         title: String,
                     }
-                    
+
                     //** links */
                     $('.mw-parser-output a').map(function (index, el) {
                         let href = $(this).attr('href');
                         if (href && href.startsWith('/wiki/')) obj.links[index] = $(this).attr('href');
                         obj.links = obj.links.filter((val) => val != null);
                         $('.mw-parser-output p').map(function (index, el) {
-                            let content = []
-                            obj.contents [index] = $(this).text();
+                            obj.contents[index] = $(this).text();
                         })
                     })
 
@@ -49,5 +48,5 @@ module.exports = {
         },
 
     },
-    
+
 }
