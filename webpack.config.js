@@ -12,6 +12,7 @@ module.exports = {
         contentBase: path.resolve(__dirname, 'src'),
         hot: true,
         port: 3000,
+        open: true,
     },
     module: {
         rules: [
