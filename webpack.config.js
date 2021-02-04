@@ -8,6 +8,11 @@ module.exports = {
         path: path.resolve(__dirname, 'src/dist')
     },
     mode: 'development',
+    devServer: {
+        contentBase: path.resolve(__dirname, 'src'),
+        hot: true,
+        port: 3000,
+    },
     module: {
         rules: [
             {

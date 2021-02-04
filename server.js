@@ -6,6 +6,8 @@ const { doc } = require('./Models/doc')
 const { link } = require('./Models/links')
 const path = require('path');
 
+const PORT = process.env.PORT || 4000
+
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 app.use(express.static('./src/dist'))
@@ -76,6 +78,6 @@ app.get('/aggregate', (req, res) => {
     })
 })
 
-app.listen(3000, () => console.log('live at 3000'));
+app.listen(PORT, () => console.log(`live at ${PORT}`));
 // db.documents.aggregate([{$group: {_id : "$url", count: {$sum: 1}}},{$match: {count: {$gt: 1}}}])
 // 
