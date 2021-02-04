@@ -4,8 +4,11 @@ const app = express();
 const utiliz = require('./utilize');
 const { doc } = require('./Models/doc')
 const { link } = require('./Models/links')
+const path = require('path');
+
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
+app.use(express.static('./src/dist'))
 
 utiliz.DB.connect(utiliz.DB.url).then(o => console.log('database is ready')).catch(er => console.log('error connecting to DB: ', er));
 
@@ -40,13 +43,10 @@ app.post('/query', (req, res)=>{
     // }).on('error', er => res.send('some error happend during retrieving result on cursor: ', er))
     //     .on('end', () => res.end());
 })
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/Front/Index.html');
+app.get('*', (req, res) => {
+    const htmlPath = path.resolve(__dirname, 'src/dist/index.html');
+    res.sendFile(htmlPath);
 })
-
-
-
-
 
 
 app.get('/aggregate', (req, res) => {
@@ -74,30 +74,6 @@ app.get('/aggregate', (req, res) => {
             })
         })
     })
-
-
-    // link.aggregate([
-    //     {
-    //         $group: {
-    //             _id: "$url",
-    //             count: {$sum: 1},
-    //             dups : {$addToSet: "$_id"}
-    //         }
-    //     },{
-    //         $match: {
-    //             count: {$gt:1}
-    //         }
-    //     }
-    // ]).exec((err, data)=>{
-    //     if(err) console.log('error aggregating links: ', err);
-    //     data.forEach((val, index)=>{
-    //         console.log(index, ': ', val);
-    //         val.dups.pop();
-    //         link.deleteMany({_id: {$in : val.dups}},err=>{
-    //             if(err) throw new Error('something went wrong deleting duplicate links');
-    //         })
-    //     })
-    // })
 })
 
 app.listen(3000, () => console.log('live at 3000'));
