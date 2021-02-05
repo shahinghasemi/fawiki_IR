@@ -23,6 +23,7 @@ module.exports = {
                     loader: 'babel-loader'
                 }
             },
+            { test: /\.css$/, use: [ 'style-loader', 'css-loader' ] }, //order matters in use!
         ]
     },
     plugins: [ new HtmlWebpackPlugin()]

@@ -5,12 +5,14 @@ const utiliz = require('./utilize');
 const { doc } = require('./Models/doc')
 const { link } = require('./Models/links')
 const path = require('path');
+const cors = require('cors');
 
 const PORT = process.env.PORT || 4000
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 app.use(express.static('./src/dist'))
+app.use(cors())
 
 utiliz.DB.connect(utiliz.DB.url).then(o => console.log('database is ready')).catch(er => console.log('error connecting to DB: ', er));
 
@@ -19,22 +21,14 @@ app.post('/query', (req, res)=>{
     const optQuery = utiliz.queryOptimization(req.body.query);
     doc.find({$text: {$search: optQuery}}, {score: {$meta: "textScore"},title: 1, url: 1})
         .sort({score : {$meta: "textScore"}}).exec((err, results)=>{
-            if(err) return res.send('output was minimum');
+            if(err) {
+                console.log('err: ', err);
+                res.status(500).send(err)
+            }
             else if(results &&  results.length){
-                let out = ''
-                let thisHead = utiliz.HTML.head ; 
-                thisHead = thisHead.replace('عدد', results.length)
-                for(let i = 0 ; i<results.length; i++){
-                    let thisCard = utiliz.HTML.card ; 
-                    thisCard = thisCard.replace('$link', results[i].url)
-                    thisCard = thisCard.replace('$title', results[i].title)
-                    thisCard = thisCard.replace('$score', results[i]._doc.score)
-                    out += thisCard
-                }
-                let endDate = moment.now();
-                thisHead = thisHead.replace('ساعت', endDate-startDate)
-                res.send(thisHead.toString() + out + utiliz.HTML.footer);
-            }else res.send('nothing found');
+                res.send(results)
+            }
+            else res.status(404).send('nothing found');
         })
         
     //! when using stream to get the result
