@@ -26,5 +26,5 @@ module.exports = {
             { test: /\.css$/, use: [ 'style-loader', 'css-loader' ] }, //order matters in use!
         ]
     },
-    plugins: [ new HtmlWebpackPlugin()]
+    plugins: [ new HtmlWebpackPlugin({title: "Search Engine"})]
 }

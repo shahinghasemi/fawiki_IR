@@ -26,7 +26,12 @@ app.post('/query', (req, res)=>{
                 res.status(500).send(err)
             }
             else if(results &&  results.length){
-                res.send(results)
+                let took = moment().diff(startDate);
+                let out = {
+                    results,
+                    took 
+                }
+                res.send(out)
             }
             else res.status(404).send('nothing found');
         })

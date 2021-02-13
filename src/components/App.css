@@ -1,8 +1,104 @@
-
-.result-title {
-    color: red
+.main-container {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    /* border: 1px solid red; */
 }
+.query-container {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 50%;
+    height: auto;
+    margin: 3rem auto;
+    /* border: 1px solid green; */
+}
+.query-input {
+    margin: 10px;
+    height: 3rem;
+    border-bottom: 2px solid gray;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-size: 1.2rem;
+    direction: rtl; 
+    outline: none;
+    transition: all 0.2s;
+}
+.query-input:focus {
+    border-bottom: 2px solid black;
+}
+.buttons-container {
+    width: auto;
+    display: flex;
+    flex-flow: row wrap;
+    padding: 10px;
+    justify-content: space-around;
+    margin: 10px 5rem;
+    /* border: 1px solid red; */
 
+}
+.github-link {
+    text-decoration: none;
+    display: block;
+    /* border: 1px solid gray; */
+}
+.button {
+    width: 8rem;
+    height: 2rem;
+    display: block;
+    border-radius: 5px;
+    background-color: rgb(163, 163, 163);
+    border: none;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    margin: 1rem;
+    transition: all 0.1s;
+}
+.button:hover {
+    box-shadow: 1px 1px 1px gray;
+}
+.meta-container {
+    direction: rtl;
+    text-align: center;
+    color: rgb(214, 119, 119);
+    font-weight: 700;
+    border: 1px dotted red;
+    border-radius: 5px;
+}
+.meta-container:hover {
+    color: rgb(204, 61, 61);
+    border: 1px dotted rgb(189, 13, 13);
+}
+.results-container {
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+    direction: rtl;
+    margin: 1rem 10rem;
+    /* border: 1px solid gray; */
+}
 .result-container {
-    font-size: 1.5rem;
+    display: flex;
+    flex-flow: column nowrap;
+    cursor: pointer;
+    transition: all .1s;
+    padding: 1rem;
+    border: none;
+    border-bottom: 1px dotted gray;
+    text-decoration: none;
+    /* border: 1px solid purple; */
+}
+.result-title {
+    color: rgb(98, 98, 98);
+}
+.result-score {
+    color: rgb(91, 91, 214);
+    font-size: 1.2rem;
+}
+.result-container:hover .result-title{
+    color: black;
+}
+.result-container:hover .result-score{
+    color: rgb(38, 38, 136);
 }

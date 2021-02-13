@@ -1,10 +1,10 @@
 import React from 'react';
 
-export default ({title, score}) => {
+export default ({title, score, url}) => {
     return(
-        <div className="result-container">
-            <h5 className="result-title">{title}</h5>
-            <p className="result-score">{score}</p>
-        </div>
+        <a href={url} className="result-container">
+            <h2 className="result-title">{title}</h2>
+            <p className="result-score">امتیاز: {score}</p>
+        </a>
     )
 };
